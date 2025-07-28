@@ -20,7 +20,6 @@ jobs:
         uses: rajgouravjain/custom-python-action@main # Path to your custom action
         with:
           name: 'DevOps Architect' # Pass the 'name' input to your action
-
       - name: Print Greeting Output
         run: echo "The custom action said: ${{ steps.custom-greeting.outputs.greeting-message }}"
         shell: bash
