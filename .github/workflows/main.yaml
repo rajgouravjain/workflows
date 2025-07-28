@@ -1,0 +1,26 @@
+# .github/workflows/main.yml
+name: Custom Python Action Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual triggering from the GitHub UI
+
+jobs:
+  greet-user:
+    runs-on: ubuntu-latest # Specify the runner environment
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4 # Action to check out your repository code
+
+      - name: Run Custom Hello World Action
+        id: custom-greeting # Assign an ID to this step to reference its outputs
+        uses: rajgouravjain/custom-python-action@main # Path to your custom action
+        with:
+          name: 'DevOps Architect' # Pass the 'name' input to your action
+
+      - name: Print Greeting Output
+        run: echo "The custom action said: ${{ steps.custom-greeting.outputs.greeting-message }}"
+        shell: bash
